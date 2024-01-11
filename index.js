@@ -4,18 +4,20 @@ const app = express();
 
 
 app.get('/', async (req, res) => {
-    // conexao.query ('select * from agenda')
-    // .debug sempre usado no knex.
-    // const agenda = await knex('agenda').debug();
-    // const agenda = await knex('agenda').where('id', 5).debug();
-    // const agenda = await knex('agenda').where('id', '!=', 5).debug();
-    // const agenda = await knex('agenda').where({ id: 5 }).first().debug();
+    //const quantidadeMedicamentos = await knex('farmacia').count();
+    //const usuarioMaisNovo = await knex('usuarios').min('idade').debug();
+    //   const somaCategoria = await knex('farmacia').select('categoria')
+    //    .sum('estoque')
+    //  .whereNotNull('categoria')
+    //  .groupBy('categoria')
+    // .debug();
 
-    const agenda = await knex('agenda').where({ id: 5 }).select('id', 'nome').first().debug();
+    const categoriaNull = await knex('farmacia').whereNull('categoria').count().debug();
+    //const farmacia = await knex('farmacia').whereNotNull('categoria', 'medicamento').debug();
+    //const usuarios = await knex('usuarios').where('idade', '>=', 18).debug();
 
 
-
-    return res.json(agenda);
+    return res.json(categoriaNull);
 });
 
 app.use(express.json());
